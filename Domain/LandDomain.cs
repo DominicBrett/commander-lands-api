@@ -10,7 +10,7 @@ namespace Domain
 {
     public class LandDomain(ILandRepository landRepository) : ILandDomain
     {
-        private readonly string[] _possibleColors = ["red", "blue", "green", "white", "red"];
+        private readonly string[] _possibleColors = ["red", "blue", "green", "white", "black"];
         public List<LandTypeCollection> GetLandTypeCollections(string[] colors)
         {
             var excludedColors = _possibleColors.Where(x => !colors.Contains(x)).ToArray();
@@ -29,6 +29,7 @@ namespace Domain
                 if (currLandTypePriority != previousLandPriority)
                 {
                     landsTypeCollections.Add(new LandTypeCollection() { Lands = [], LandType = landType });
+                    previousLandPriority = currLandTypePriority;
                     i++;
                 }
                 landsTypeCollections[i].Lands.Add(land);
