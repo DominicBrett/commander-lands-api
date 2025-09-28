@@ -2,7 +2,7 @@
 using Domain.Models;
 using Microsoft.AspNetCore.Mvc;
 
-namespace commander_lands_api.Controllers
+namespace Presentation.Controllers
 {
     [ApiController]
     [Route("/Lands/")]
