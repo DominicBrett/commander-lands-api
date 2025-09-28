@@ -10,10 +10,10 @@ namespace Application
 {
     public class LandOrchestrator(ILandDomain landDomain) : ILandOrchestrator
     {
-        public List<LandTypeCollection> GetLandTypeCollections(string[] colors)
+        public async Task<List<LandTypeCollection>> GetLandTypeCollections(string[] colors)
         {
             // validation here
-            return landDomain.GetLandTypeCollections(colors);
+            return await landDomain.GetLandTypeCollections(colors);
         }
     }
 }

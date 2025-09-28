@@ -1,4 +1,4 @@
-﻿using Domain.Models;
+﻿using Domain.Models.DataModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +9,6 @@ namespace Domain.Interfaces
 {
     public interface ILandRepository
     {
-        List<LandData> GetLands(string[] producesAny, string[] doesNotProduceAny);
+        Task<List<LandData>> GetLands(string[] producesAny, string[] doesNotProduceAny);
     }
 }

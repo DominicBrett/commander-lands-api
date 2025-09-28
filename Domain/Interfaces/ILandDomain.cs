@@ -10,6 +10,6 @@ namespace Domain.Interfaces
 {
     public interface ILandDomain
     {
-        List<LandTypeCollection> GetLandTypeCollections(string[] colors);
+        Task<List<LandTypeCollection>> GetLandTypeCollections(string[] colors);
     }
 }

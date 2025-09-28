@@ -11,15 +11,16 @@ namespace Domain
     public class LandDomain(ILandRepository landRepository) : ILandDomain
     {
         private readonly string[] _possibleColors = ["red", "blue", "green", "white", "black"];
-        public List<LandTypeCollection> GetLandTypeCollections(string[] colors)
+        public async Task<List<LandTypeCollection>> GetLandTypeCollections(string[] colors)
         {
             var excludedColors = _possibleColors.Where(x => !colors.Contains(x)).ToArray();
-            var lands = landRepository.GetLands(colors, excludedColors).OrderBy(x => x.Type.Priority);
+            var lands = await landRepository.GetLands(colors, excludedColors);
+            var landsOrdered = lands.OrderBy(x => x.Type.Priority);
             var landsTypeCollections = new List<LandTypeCollection>();
 
             var i = -1;
             var previousLandPriority = 0;
-            foreach (var land in lands)
+            foreach (var land in landsOrdered)
             {
                 if (land == null) continue;
 

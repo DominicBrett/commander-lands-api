@@ -9,7 +9,7 @@ namespace Presentation.Controllers
     public class LandController(ILandOrchestrator landOrchestrator)
     {
         [HttpGet]
-        public List<LandTypeCollection> GroupedByPriority([FromQuery] string[] colorsProduced)
+        public Task<List<LandTypeCollection>> GroupedByPriority([FromQuery] string[] colorsProduced)
         {
             return landOrchestrator.GetLandTypeCollections(colorsProduced);
         }

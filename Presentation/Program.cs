@@ -1,7 +1,9 @@
 using Application;
 using Domain;
 using Domain.Interfaces;
+using Infrastructure;
 using Infrastructure.Repositories;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,9 +14,15 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddSingleton<ILandOrchestrator, LandOrchestrator>();
-builder.Services.AddSingleton<ILandDomain, LandDomain>();
-builder.Services.AddSingleton<ILandRepository, LandRepository>();
+
+builder.Services.AddDbContext<LandContext>(options =>
+    options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+builder.Services.AddDbContext<LandContext>();
+
+builder.Services.AddScoped<ILandOrchestrator, LandOrchestrator>();
+builder.Services.AddScoped<ILandDomain, LandDomain>();
+builder.Services.AddScoped<ILandRepository, LandRepository>();
 
 var app = builder.Build();
 

@@ -5,13 +5,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Domain.Models
+namespace Domain.Models.DataModels
 {
-    public class LandType
+    public class LandData : Land
     {
         [Key]
         public int Id { get; set; }
-        public required string Name { get; set; }
-        public required int Priority { get; set; }
+        public int TypeId { get; set; }
+
+        public LandType Type { get; set; }
+
     }
 }

@@ -9,6 +9,6 @@ namespace Application
 {
     public interface ILandOrchestrator
     {
-        List<LandTypeCollection> GetLandTypeCollections(string[] colors);
+        Task<List<LandTypeCollection>> GetLandTypeCollections(string[] colors);
     }
 }
